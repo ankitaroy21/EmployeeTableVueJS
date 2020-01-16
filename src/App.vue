@@ -43,7 +43,20 @@
     employee.id === id ? updatedEmployee : employee
   )
 }
-  }
+  },
+   mounted() {
+  //console.log('App mounted!');
+  if (localStorage.getItem('employees')) this.employees = JSON.parse(localStorage.getItem('employees'));
+},
+watch: {
+  employees: {
+    handler() {
+      //console.log('Todos changed!');
+      localStorage.setItem('employees', JSON.stringify(this.employees));
+    },
+    deep: true,
+  },
+},
 }
 </script>
 
